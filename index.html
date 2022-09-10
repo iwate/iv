@@ -40,7 +40,8 @@
         h = ih = height;
         x = (width - w) / 2;
         y = 0;
-        ctx.drawImage(image, x, y, w, h);
+        ctx.translate(x, y);
+        ctx.drawImage(image, 0, 0, w, h);
     }
 
     let scale = 1;
@@ -63,8 +64,8 @@
       //h = ih * scale;
       x = (width - w * scale) / 2;
       y = (height - h * scale) / 2;
-        
-      ctx.drawImage(image, x, y, w, h);
+      ctx.translate(x, y);
+      ctx.drawImage(image, 0, 0, w, h);
       
       ctx.restore();
 
