@@ -8,6 +8,7 @@
       height: 100%;
       offset: 0;
       margin: 0;
+      background: #111;
     }
   </style>
 </head>
@@ -15,28 +16,34 @@
   <canvas id="canvas" ></canvas>
   
   <script>
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    
     const params = location.search.startsWith('?') ? Object.fromEntries(location.search.slice(1).split('&').map(str => str.split('='))) : {};
     
     const canvas = document.getElementById('canvas');
     
     const ctx = canvas.getContext('2d');
     
-    ctx.canvas.width  = window.innerWidth;
-    ctx.canvas.height = window.innerHeight;
+    ctx.canvas.width  = width;
+    ctx.canvas.height = height;
 
     const image = new Image();
 
     image.src = decodeURIComponent(params.src);
 
-    const x = 0, y = 0, width = 640, height = 480;
+    let x = 0, y = 0, w = width, h = height;
     
     image.onload = () => {
-        ctx.drawImage(image, x, y, width, height);
+        aspect = image.width / image.height;
+        w = aspect * height;
+        h = width / aspect;
+        ctx.drawImage(image, x, y, w, h);
     }
 
     let scale = 1;
 
-    canvas.addEventListener('wheel', ()=>{
+    canvas.addEventListener('wheel', () => {
         
       event.preventDefault();
 
