@@ -55,16 +55,14 @@
 
       ctx.save();
 
-      ctx.translate(event.clientX - cx, event.clientY - cy);
-      
       ctx.drawImage(
         image, 
         0, 
         0, 
         image.width, 
         image.height,
-        cx - w * scale / 2,
-        cy - h * scale / 2,
+        cx - w * scale / 2 - (cx - event.clientX),
+        cy - h * scale / 2 - (cy - event.clientY),
         w * scale, 
         h * scale);
       
