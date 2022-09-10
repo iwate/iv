@@ -19,10 +19,10 @@
     
     const canvas = document.getElementById('canvas');
     
-    canvas.width = document.body.offsetWidth;
-    canvas.height = document.body.offsetHeight;
-    
     const ctx = canvas.getContext('2d');
+    
+    ctx.canvas.width  = window.innerWidth;
+    ctx.canvas.height = window.innerHeight;
 
     const image = new Image();
 
