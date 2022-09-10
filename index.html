@@ -32,7 +32,7 @@
 
     image.src = decodeURIComponent(params.src);
 
-    let x = 0, y = 0, w = width, h = height;
+    let x = 0, y = 0, w = width, h = height, cx = width / 2, cy = height / 2;
     
     image.onload = () => {
         const aspect = image.width / image.height;
@@ -61,10 +61,12 @@
         0, 
         image.width, 
         image.height,
-        event.clientX - w * scale / 2,
-        event.clientY - h * scale / 2,
+        cx - w * scale / 2,
+        cy - h * scale / 2,
         w * scale, 
         h * scale);
+      
+      ctx.translate(cx - event.clientX, cy - event.clientY);
       
       ctx.restore();
 
