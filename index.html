@@ -14,7 +14,7 @@
 
     const image = new Image();
 
-    image.src = params.src;
+    image.src = decodeURICompoent(params.src);
 
     const x = 0, y = 0, width = 640, height = 480;
     
