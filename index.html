@@ -19,6 +19,9 @@
     
     const canvas = document.getElementById('canvas');
     
+    canvas.width = document.body.offsetWidth;
+    canvas.height = document.body.offsetHeight;
+    
     const ctx = canvas.getContext('2d');
 
     const image = new Image();
