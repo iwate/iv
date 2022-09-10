@@ -38,6 +38,8 @@
         aspect = image.width / image.height;
         w = aspect * height;
         h = width / aspect;
+        x = (width - w) / 2;
+        h = (height - h) / 2;
         ctx.drawImage(image, x, y, w, h);
     }
 
@@ -57,7 +59,7 @@
 
       ctx.scale(scale, scale);
         
-      ctx.drawImage(image, x, y, width, height);
+      ctx.drawImage(image, x, y, w, h);
       
       ctx.restore();
 
