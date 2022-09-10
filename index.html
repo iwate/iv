@@ -32,14 +32,12 @@
 
     image.src = decodeURIComponent(params.src);
 
-    let x = 0, y = 0, w = width, h = height, iw, ih;
+    let x = 0, y = 0, w = width, h = height;
     
     image.onload = () => {
         const aspect = image.width / image.height;
-        w = iw = aspect * height;
-        h = ih = height;
+        w = aspect * height;
         x = (width - w) / 2;
-        y = 0;
         ctx.drawImage(image, x, y, w, h);
     }
 
@@ -57,14 +55,14 @@
 
       ctx.save();
 
-      ctx.scale(scale, scale, width / 2, height / 2);
-      
-      //w = iw * scale;
-      //h = ih * scale;
-      //x = (width - w * scale) / 2;
-      //y = (height - h * scale) / 2;
-      
-      ctx.drawImage(image, x, y, w, h);
+      ctx.drawImage(image, 0, 0, image.width, image.height,
+
+                  (width - w * scale) / 2,
+
+                  (height - h * scale) / 2,
+
+                  w * scale, h * scale);
+
       
       ctx.restore();
 
