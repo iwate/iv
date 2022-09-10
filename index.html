@@ -55,14 +55,16 @@
 
       ctx.save();
 
-      ctx.drawImage(image, 0, 0, image.width, image.height,
-
-                  (width - w * scale) / 2,
-
-                  (height - h * scale) / 2,
-
-                  w * scale, h * scale);
-
+      ctx.drawImage(
+        image, 
+        0, 
+        0, 
+        image.width, 
+        image.height,
+        event.clientX - w * scale / 2,
+        event.clientY - h * scale / 2,
+        w * scale, 
+        h * scale);
       
       ctx.restore();
 
