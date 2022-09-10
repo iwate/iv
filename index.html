@@ -59,10 +59,10 @@
 
       ctx.scale(scale, scale);
       
-      w = image.width * scale;
-      h = image.height * scale;
-      x = (width - w);
-      y = (height - h);
+      //w = image.width * scale;
+      //h = image.height * scale;
+      x -= x * scale;
+      y -= y * scale;
         
       ctx.drawImage(image, x, y, w, h);
       
