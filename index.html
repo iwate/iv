@@ -6,7 +6,7 @@
   <canvas id="canvas" width="640" height="480"></canvas>
   
   <script>
-    const params = location.search.startsWith('?') ? Object.fromEntries(location.search.slice(1).split('&').map(str => str.split('=')) : {};
+    const params = location.search.startsWith('?') ? Object.fromEntries(location.search.slice(1).split('&').map(str => str.split('='))) : {};
     
     const canvas = document.getElementById('canvas');
     
