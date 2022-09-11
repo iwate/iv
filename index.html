@@ -43,6 +43,12 @@
       context.translate(currentTransformedCursor.x, currentTransformedCursor.y);
       context.scale(zoom, zoom);
       context.translate(-currentTransformedCursor.x, -currentTransformedCursor.y);
+      if (width / image.width < height / image.height) {
+        context.translate((width - image.width * zoom) / 2, 0);
+      }
+      else {
+        context.translate(0, (height - image.height * zoom) / 2);
+      }
 
       drawImageToCanvas();
     };
