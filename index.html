@@ -14,8 +14,6 @@
 </head>
 <body>
   <canvas id="canvas" ></canvas>
-  <div id="mouse-pos"></div>
-  <div id="transformed-mouse-pos"></div>
   <script>
     const width = window.innerWidth;
     const height = window.innerHeight;
@@ -35,18 +33,16 @@
     context.imageSmoothingEnabled = false;
 
 
-    // Simply used to display the mouse position and transformed mouse position
-    const mousePos = document.getElementById('mouse-pos');
-    const transformedMousePos = document.getElementById('transformed-mouse-pos');
-
     const image = new Image();
     image.src = decodeURIComponent(params.src);
     image.onload = function() {
       const zoom = Math.min(width / image.width, height / image.height);
-
-      context.translate(width/2, height/2);
+      
+      currentTransformedCursor = getTransformedPoint(width/2, height/2);
+      
+      context.translate(currentTransformedCursor.x, currentTransformedCursor.y);
       context.scale(zoom, zoom);
-      context.translate(-width/2, -height/2);
+      context.translate(-currentTransformedCursor.x, -currentTransformedCursor.y);
 
       drawImageToCanvas();
     };
@@ -80,8 +76,6 @@
 
     function onMouseMove(event) {
       currentTransformedCursor = getTransformedPoint(event.offsetX, event.offsetY);
-      mousePos.innerText = `Original X: ${event.offsetX}, Y: ${event.offsetY}`;
-      transformedMousePos.innerText = `Transformed X: ${currentTransformedCursor.x}, Y: ${currentTransformedCursor.y}`;
 
       if (isDragging) {
         context.translate(currentTransformedCursor.x - dragStartPosition.x, currentTransformedCursor.y - dragStartPosition.y);
