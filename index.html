@@ -27,6 +27,13 @@
     
     ctx.canvas.width  = width;
     ctx.canvas.height = height;
+    
+    const getPoint = (x, y) => {
+      const t = ctx.getTransform().invertSelf();
+      const tx = t.a * x + t.c * y + t.e;
+      const ty = t.b * x + t.d * y + t.f;
+      return { x: tx, y: ty };
+    };
 
     const image = new Image();
 
@@ -38,7 +45,10 @@
         const aspect = image.width / image.height;
         w = aspect * height;
         x = (width - w) / 2;
-        ctx.drawImage(image, x, y, w, h);
+        ctx.save();
+        ctx.transform(x, y);
+        ctx.drawImage(image, 0, 0, w, h);
+        ctx.restore();
     }
 
     let scale = 1;
@@ -55,14 +65,11 @@
 
       ctx.save();
 
-      ctx.translate((-w) / 2, (-h) / 2);
+      const m = getPoint(event.clientX, event.clientY);
+      ctx.translate(-m.x, -m.y);
       ctx.scale(scale, scale);
-      ctx.translate((w) / 2, (h) / 2);
-      ctx.drawImage(image,
-        0, 
-        0, 
-        w,
-        h);
+      ctx.translate(m.x, m.y);
+      ctx.drawImage(image, 0, 0, w, h);
       
       ctx.restore();
 
