@@ -38,7 +38,7 @@
     image.onload = function() {
       const zoom = Math.min(width / image.width, height / image.height);
       
-      currentTransformedCursor = getTransformedPoint(width/2, height/2);
+      currentTransformedCursor = getTransformedPoint(0,0);
       
       context.translate(currentTransformedCursor.x, currentTransformedCursor.y);
       context.scale(zoom, zoom);
