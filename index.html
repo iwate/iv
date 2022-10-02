@@ -98,7 +98,7 @@
 
     function onWheel(event) {
       const zoom = event.deltaY < 0 ? 1.01 : 0.99;
-
+      console.log(event.deltaY, zoom);
       context.translate(currentTransformedCursor.x, currentTransformedCursor.y);
       context.scale(zoom, zoom);
       context.translate(-currentTransformedCursor.x, -currentTransformedCursor.y);
