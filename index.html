@@ -17,8 +17,13 @@
 <body>
   <canvas id="canvas" ></canvas>
   <script>
+  function init() {
     const width = window.innerWidth;
     const height = window.innerHeight;
+    if (width == 0 || height == 0) {
+      setTimeout(init, 100);
+      return;
+    }
     
     const params = location.search.startsWith('?') ? Object.fromEntries(location.search.slice(1).split('&').map(str => str.split('='))) : {};
     
@@ -126,7 +131,8 @@
       return { x: transformedX, y: transformedY };
     }
 
-
+  }
+  init();
   </script>
 </body>
 </html>
